@@ -1,9 +1,42 @@
 using System;
+using System.Collections.Generic;
 
-class Program
+namespace Shapes
 {
-    static void Main(string[] args)
+    class Program
     {
-        Console.WriteLine("Hello World! This is the Shapes Project.");
+        static void Main(string[] args)
+        {
+            // Test individual shapes first
+            Console.WriteLine("Testing individual shapes:");
+            
+            Square square = new Square("Red", 5);
+            Console.WriteLine($"Square - Color: {square.GetColor()}, Area: {square.GetArea()}");
+
+            Rectangle rectangle = new Rectangle("Blue", 4, 6);
+            Console.WriteLine($"Rectangle - Color: {rectangle.GetColor()}, Area: {rectangle.GetArea()}");
+
+            Circle circle = new Circle("Green", 3);
+            Console.WriteLine($"Circle - Color: {circle.GetColor()}, Area: {circle.GetArea():F2}");
+
+            Console.WriteLine("\nTesting polymorphism with a list:");
+
+            // Create a list of shapes
+            List<Shape> shapes = new List<Shape>();
+
+            // Add different shapes to the list
+            shapes.Add(new Square("Yellow", 4));
+            shapes.Add(new Rectangle("Purple", 3, 7));
+            shapes.Add(new Circle("Orange", 5));
+            shapes.Add(new Square("Pink", 2.5));
+            shapes.Add(new Rectangle("Brown", 6, 8));
+
+            // Iterate through the list and display color and area
+            foreach (Shape shape in shapes)
+            {
+                string shapeType = shape.GetType().Name;
+                Console.WriteLine($"{shapeType} - Color: {shape.GetColor()}, Area: {shape.GetArea():F2}");
+            }
+        }
     }
 }
